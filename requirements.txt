@@ -1,0 +1,21 @@
+# Multi-Agent Task Planning System
+# Python 3.11+
+
+# Web framework
+fastapi>=0.109.0,<1.0
+uvicorn[standard]>=0.27.0,<1.0
+
+# Frontend
+streamlit>=1.29.0,<2.0
+
+# Configuration & validation
+pydantic>=2.5.0,<3.0
+pydantic-settings>=2.1.0,<3.0
+
+# LangGraph (prepare for integration)
+# langgraph>=0.0.40
+# langchain>=0.1.0
+
+# LLM clients
+langchain-openai>=0.1.0
+langchain-anthropic>=0.1.0

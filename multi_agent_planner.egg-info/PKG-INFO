@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: multi-agent-planner
+Version: 0.1.0
+Summary: Autonomous Multi-Agent AI Task Planning System
+Author: Multi-Agent Planner Team
+License: MIT
+Keywords: multi-agent,ai,planning,langgraph
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.11

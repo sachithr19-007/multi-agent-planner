@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "multi-agent-planner"
+version = "0.1.0"
+description = "Autonomous Multi-Agent AI Task Planning System"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Multi-Agent Planner Team" }]
+keywords = ["multi-agent", "ai", "planning", "langgraph"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.scripts]
+multi-agent-planner = "multi_agent_planner.app:main"
+
+[tool.setuptools.package-dir]
+"multi_agent_planner" = "."
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["multi_agent_planner*"]

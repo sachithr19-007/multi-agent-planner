@@ -1,0 +1,2 @@
+[console_scripts]
+multi-agent-planner = multi_agent_planner.app:main
