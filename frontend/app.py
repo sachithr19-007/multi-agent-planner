@@ -2,27 +2,28 @@ import os
 import sys
 import streamlit as st
 
-# ---- Add project root to Python path ----
+# -----------------------------
+# Add project root to Python path
+# -----------------------------
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, ".."))
 sys.path.append(PROJECT_ROOT)
-# ------------------------------------------
 
+# -----------------------------
+# Import Agents
+# -----------------------------
 from agents.planner import PlannerAgent
 from agents.researcher import ResearchAgent
 from agents.critic import CriticAgent
-
 
 # -----------------------------
 # App Configuration
 # -----------------------------
 st.set_page_config(page_title="Multi-Agent Task Planner", page_icon="📝")
-
 st.title("📝 Multi-Agent Task Planner")
 st.markdown(
     "Enter a goal and let multiple agents collaborate to generate a structured plan."
 )
-
 st.divider()
 
 # -----------------------------
@@ -41,12 +42,10 @@ goal = st.text_input("🎯 Enter your goal:", "")
 # Generate Plan Button
 # -----------------------------
 if st.button("Generate Plan", use_container_width=True):
-
     if not goal.strip():
         st.warning("⚠️ Please enter a goal first.")
     else:
         with st.spinner("Agents are thinking..."):
-
             try:
                 # ---- Planner ----
                 planner_output = planner.plan(goal)
@@ -58,7 +57,6 @@ if st.button("Generate Plan", use_container_width=True):
                 critic_feedback = critic.run(planner_output["tasks"])
 
                 st.success("✅ Plan generated successfully!")
-
                 st.divider()
 
                 # -----------------------------
@@ -86,4 +84,4 @@ if st.button("Generate Plan", use_container_width=True):
                 st.error(f"Execution failed: {e}")
 
 st.markdown("---")
-st.caption("Built with Streamlit • Multi-Agent Architecture • Day 2 Complete 🚀")
+st.caption("Built with Streamlit • Multi-Agent Mock • Day 3 Complete 🚀")

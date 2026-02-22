@@ -60,6 +60,7 @@ class PlannerAgent(BaseAgent):
         # Always return None for free testing (no keys needed)
         return None
 
+    # <--- This is the key method your app calls
     def plan(self, goal: str) -> dict[str, Any]:
         if not goal or not goal.strip():
             raise PlannerAgentError("Goal cannot be empty")

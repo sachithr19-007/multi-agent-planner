@@ -1,11 +1,22 @@
-from typing import Any, List
+# critic.py — Free Testing Version
 
-class CriticAgent:
-    def __init__(self, name: str = "critic", **kwargs: Any) -> None:
-        self.name = name
+from typing import Any
 
-    def run(self, plan_steps: List[str]) -> List[str]:
-        suggestions = []
-        for step in plan_steps:
-            suggestions.append(f"Review feasibility of: {step}")
-        return suggestions
+class BaseAgent:
+    def __init__(self, name="base", **kwargs):
+        pass
+
+class CriticAgentError(Exception):
+    pass
+
+class CriticAgent(BaseAgent):
+    def __init__(self, name: str = "critic", **kwargs: Any):
+        super().__init__(name=name, **kwargs)
+
+    def run(self, planner_steps: list) -> list[str]:
+        if not planner_steps:
+            raise CriticAgentError("No planner steps provided")
+        
+        # MOCK feedback
+        feedback = [f"Check: {step}" for step in planner_steps]
+        return feedback
