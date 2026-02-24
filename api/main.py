@@ -1,35 +1,30 @@
-"""
-FastAPI application entry point.
-
-Placeholder module for API server setup and route registration.
-"""
-
 from fastapi import FastAPI
+from pydantic import BaseModel
 
-from multi_agent_planner.config import get_settings
+from multi_agent_planner.orchestrator import MultiAgentOrchestrator
+from multi_agent_planner.agents.planner import PlannerAgent
+from multi_agent_planner.agents.researcher import ResearcherAgent
+from multi_agent_planner.agents.critic import CriticAgent
+
+app = FastAPI()
 
 
-def create_app() -> FastAPI:
-    """
-    Create and configure the FastAPI application.
+class GoalRequest(BaseModel):
+    goal: str
 
-    Returns:
-        Configured FastAPI application instance.
-    """
-    get_settings()
-    app = FastAPI(
-        title="Multi-Agent Task Planning API",
-        version="0.1.0",
-        description="API for the Autonomous Multi-Agent AI Task Planning System",
+
+@app.post("/plan")
+def generate_plan(request: GoalRequest):
+    planner = PlannerAgent()
+    researcher = ResearcherAgent()
+    critic = CriticAgent()
+
+    orchestrator = MultiAgentOrchestrator(
+        planner,
+        researcher,
+        critic
     )
-    # Route registration will be added here
-    return app
 
+    result = orchestrator.run(request.goal)
 
-app = create_app()
-
-
-@app.get("/health")
-def health_check() -> dict[str, str]:
-    """Health check endpoint for load balancers and monitoring."""
-    return {"status": "healthy"}
+    return result
